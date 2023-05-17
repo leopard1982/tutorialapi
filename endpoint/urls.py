@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from tutorial1.views import hello_world
-from tutorial1.viewsapi import viewAllUser
+from endpoint.views import viewAllUser, viewDetailUser
 
 urlpatterns = [
     path('1/', viewAllUser, name="viewAllUser"),
+    path('1/<int:pk>/',viewDetailUser,name="viewDetailUser"),
 ]
