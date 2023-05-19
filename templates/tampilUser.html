@@ -2,26 +2,40 @@
 {% load static %}
 {% block contents%}
 
-{% if data is not none %}
+{% if data %}
 <div class="text-center">
 	<h1>Daftar User</h1>
 </div>
 
-<div class="row d-flex justify-content-between">
+<div class="row d-flex justify-content-between" id="updateme">
 	{% for datanya in data %}
 	<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 m-3 border border-1 rounded shadow" style="background: rgba(255,0,0,0.2);padding:20px">
 		<p>Username: {{datanya.username}}</p>
 		<p>Email: {{datanya.email}}</p>
 		<p><i>password dirahasiakan!</i></p>
-		
+		<div class="row">
+			<div class="col-7">
+				<h3 style="color:orange;">&#9733;&#9733;&#9733;&#9733;&#9734;</h3>		
+			</div>
+			<div class="col-5 d-flex justify-content-end">
+				<input type="button" value="delete" id="btndelete" onclick="deletedata('{{ datanya.username }}')">
+			</div>
+		</div>
+
 	</div>
 	{% endfor%}
 	{{data.status_code}}
 </div>
 {% else %}
 <div class="text-center">
-	<h1>No Data</h1>
+	<h1>No Data Available</h1>
 </div>
 {% endif%}
+
+<script type="text/javascript">
+	function deletedata(datanya) {
+		window.location.href="http://192.168.1.50:8787/d/" + datanya + "/";
+	}
+</script>
 
 {% endblock%}

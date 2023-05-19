@@ -19,27 +19,20 @@ def viewAllUser(request):
 			return Response(request.data,status=200)
 		return Response(myuser.errors,status=400)
 
-@api_view(['GET','DELETE','UPDATE'])
-def viewDetailUser(request,pk):
+@api_view(['GET','DELETE'])
+def viewDetailUser(request,username):
 	if request.method == "GET":
 		try:
-			usernya = User.objects.get(id=pk)
+			usernya = User.objects.get(username=username)
 			myuser = showUser(usernya)
 			return Response(myuser.data)
 		except:
 			return Response(status=404)
 	
 	if request.method=="DELETE":
-		try:
-			User.objects.get(id=pk).delete()
-		except:
-			Response(status=404)
-
+		User.objects.all().filter(username=username).delete()
+		
 		usernya = User.objects.all()
-		if(usernya.count()>1):
-			myuser = showUser(usernya,many=True)
-			return Response(myuser.data)
-		else:
-			myuser = showUser(usernya)
-			return Response(myuser.data)
-
+		
+		myuser= showUser(usernya, many=True)
+		return Response(myuser.data, status=200)
