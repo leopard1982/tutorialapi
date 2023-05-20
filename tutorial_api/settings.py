@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-=t8e^&7sxr8+osh+%36lsuv6vo=snpk3ou53**-s1q@=&r%kkz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.50','localhost','127.0.0.1']
-CSRF_TRUSTED_ORIGINS=['http://192.168.1.50:8787','http://localhost:8000','http://localhost:8787','http://127.0.0.1:8000','http://127.0.0.1:8787']
+ALLOWED_HOSTS = ['192.168.1.25','localhost','127.0.0.1']
+CSRF_TRUSTED_ORIGINS=['http://192.168.1.25','http://localhost:8000','http://localhost','http://127.0.0.1:8000','http://127.0.0.1:8787']
 
 
 # Application definition
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000','http://192.168.1.50:8787','http://localhost:8787','http://127.0.0.1:8787'
+    'http://localhost:8000','http://192.168.1.25','http://localhost','http://127.0.0.1'
 )
 
 ROOT_URLCONF = 'tutorial_api.urls'
@@ -87,8 +87,12 @@ WSGI_APPLICATION = 'tutorial_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dbtutorial1',
+        'USER': 'admin',
+        'PASSWORD': 'chandra1982',
+        'HOST':'192.168.1.25',
+        'PORT':'3306'
     }
 }
 
